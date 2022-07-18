@@ -14,12 +14,25 @@
           :key="i"
         >
           <div
-            class="w-full flex flex-col space-y-4 items-center px-10 text-white md:w-1/2"
+            class="w-full flex flex-col space-y-6 items-center px-10 text-white md:w-1/2"
           >
             <h1 class="text-4xl">{{ e }}</h1>
-            <div v-if="i === 3" class="text-center">
+            <div v-if="i === 3" class="flex flex-col space-y-3 text-center">
               <h2 class="text-xl">Also supports: {{ e }}?q={field}</h2>
-              <p>Fields are: {{ fields }}</p>
+              <p>
+                field =
+                <span v-for="(f, i) in fields" :key="i">{{ f }} </span>
+              </p>
+            </div>
+            <div v-if="i === 5" class="flex flex-col space-y-3 text-center">
+              <p>
+                type =
+                <span v-for="(t, i) in typeTxout" :key="i">{{ t }} </span>
+              </p>
+              <p>
+                val =
+                <span v-for="(v, i) in valueTxout" :key="i">{{ v }} </span>
+              </p>
             </div>
             <p v-if="i <= 2">h = block height | block hash</p>
             <p class="max-w-md text-amber-100">{{ descriptions[i] }}</p>
@@ -45,7 +58,12 @@ export default defineComponent({
         '/txoutset/{type}/{val}',
         '/alltxoutset',
       ],
-      fields: ['blockcount', 'bestblockhash', 'difficulty', 'softforks'],
+      fields: [
+        'blockcount | ',
+        'bestblockhash | ',
+        'difficulty | ',
+        'softforks',
+      ],
       descriptions: [
         'returns block info',
         'returns block header info',
@@ -70,6 +88,20 @@ export default defineComponent({
         'txoutset-sample',
         'alltxoutset',
       ],
+      typeTxout: [
+        'addr | ',
+        'raw | ',
+        'combo | ',
+        'pkh',
+        // 'sh | ',
+      ],
+      valueTxout: [
+        '<address> | ',
+        '<hex script> | ',
+        '<pubkey> | ',
+        '<pubkey>',
+        //multi(<n>,<pubkey>,<pubkey>,…) | ',
+      ],
     }
   },
   methods: {
@@ -78,6 +110,5 @@ export default defineComponent({
       return new URL(`../assets/${this.img[i]}.png`, import.meta.url).href
     },
   },
-  computed: {},
 })
 </script>

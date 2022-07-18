@@ -33,7 +33,7 @@
           v-else
           class="w-full bg-white p-5 rounded-md overflow-scroll max-h-96 min-h-[100px] md:w-1/2"
         >
-          {{ res }}
+          <pre>{{ res }}</pre>
         </div>
       </div>
     </div>
