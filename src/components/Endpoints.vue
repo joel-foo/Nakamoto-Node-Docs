@@ -75,7 +75,7 @@ export default defineComponent({
   methods: {
     fetchData() {},
     getImageUrl(i: number) {
-      return new URL('../assets/' + this.img[i] + '.png', import.meta.url).href
+      return new URL(`../assets/${this.img[i]}.png`, import.meta.url).href
     },
   },
   computed: {},
